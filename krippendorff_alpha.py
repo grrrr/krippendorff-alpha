@@ -4,7 +4,6 @@
 Python implementation of Krippendorff's alpha -- inter-rater reliability
 
 (c)2011 Thomas Grill (http://grrrr.org)
-license: http://creativecommons.org/licenses/by-sa/3.0/
 
 Python version >= 2.4 required
 '''
