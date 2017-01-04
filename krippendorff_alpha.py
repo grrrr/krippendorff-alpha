@@ -3,7 +3,7 @@
 '''
 Python implementation of Krippendorff's alpha -- inter-rater reliability
 
-(c)2011 Thomas Grill (http://grrrr.org)
+(c)2011-17 Thomas Grill (http://grrrr.org)
 
 Python version >= 2.4 required
 '''
@@ -76,6 +76,9 @@ def krippendorff_alpha(data, metric=interval_metric, force_vecmath=False, conver
 
     units = dict((it, d) for it, d in units.items() if len(d) > 1)  # units with pairable values
     n = sum(len(pv) for pv in units.values())  # number of pairable values
+    
+    if n == 0:
+        raise ValueError("No items to compare.")
     
     np_metric = (np is not None) and ((metric in (interval_metric, nominal_metric, ratio_metric)) or force_vecmath)
     
