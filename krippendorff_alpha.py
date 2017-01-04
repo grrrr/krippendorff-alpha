@@ -100,7 +100,7 @@ def krippendorff_alpha(data, metric=interval_metric, force_vecmath=False, conver
                 De += sum(metric(gi, gj) for gi in g1 for gj in g2)
     De /= float(n*(n-1))
 
-    return 1.-Do/De
+    return 1.-Do/De if (Do and De) else 1.
 
 
 if __name__ == '__main__': 
