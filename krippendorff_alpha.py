@@ -50,7 +50,10 @@ def krippendorff_alpha(data, metric=interval_metric, force_vecmath=False, conver
     m = len(data)
     
     # set of constants identifying missing values
-    maskitems = list(missing_items)
+    if missing_items is None:
+        maskitems = []
+    else:
+        maskitems = list(missing_items)
     if np is not None:
         maskitems.append(np.ma.masked_singleton)
     
@@ -91,6 +94,9 @@ def krippendorff_alpha(data, metric=interval_metric, force_vecmath=False, conver
             Du = sum(metric(gi, gj) for gi in grades for gj in grades)
         Do += Du/float(len(grades)-1)
     Do /= float(n)
+
+    if Do == 0:
+        return 1.
 
     De = 0.
     for g1 in units.values():
